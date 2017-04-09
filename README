@@ -1,0 +1,30 @@
+Partial solution to todo list 1.
+
+
+This code provides some basic functionality for a todo application using AWS lambda functions 
+and AWS DynamonDB.  It is not a complete result of the requested implemenation due to time
+constraints on my part.  
+
+The lambda operations are super simple and quite cool.  For what I am doing Java is probably 
+overkill.  But each lambda action can be attached to methods in the TodoActions class.  Each of the
+methods must be registered as indidivudal lambdas.  The AWS role must have execute and dynamodb rigths.
+
+The DB class is used to actually create the DynamoDB table.  That needs to be done before the lamdas
+executed.  
+
+Basically the lamda executes, helpers on the ToDoItem class convert the parameters to a ToDoItem, 
+the ToDoItem is then added, updated, deleted or a list of items for an email address is returned
+to the caller.
+
+
+There is a start of some maven test to validate the DB methods.  
+
+The desire to have a daily list of uncompleted items sent to the users would be done via a 
+lambda daily.  That action would scan the database for uncompleted items and send the emails.  It is 
+not in the source code as a table scan would be expensive and did not figure out how to attach either a global 
+secondary index or a local secondary index to perform the query based on uncompleted items.
+
+
+
+
+
